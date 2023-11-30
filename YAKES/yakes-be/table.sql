@@ -1,0 +1,29 @@
+CREATE TABLE poli (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+CREATE TABLE dokter (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255),
+    poli_id INT,
+    jam_praktek VARCHAR(100),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (poli_id) REFERENCES poli(id)
+);
+
+CREATE TABLE pasien (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nama VARCHAR(255),
+    nik VARCHAR(255),
+    bpjs VARCHAR(255),
+    alamat Text,
+    phone VARCHAR(255),
+    dokter_id INT,
+    nomor_antrian INT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (dokter_id) REFERENCES Dokter(id)
+);
